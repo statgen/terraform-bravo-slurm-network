@@ -27,6 +27,14 @@ resource "google_compute_network" "cluster_network" {
   auto_create_subnetworks = false
 }
 
+resource "google_compute_subnetwork" "cluster_subnet" {
+  name                     = "bravo-slurm-subnet"
+  network                  = google_compute_network.cluster_network.self_link
+  region                   = "us-central1"
+  ip_cidr_range            = "10.1.0.0/16"
+  private_ip_google_access = true
+}
+
 resource "google_compute_firewall" "cluster_ssh_firewall" {
   count         = (var.use_iap ? 0 : 1)
   name          = "bravo-slurm-allow-ssh"

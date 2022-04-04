@@ -10,12 +10,12 @@ resource "google_filestore_instance" "shared_storage" {
   tier = "BASIC_SSD"
 
   file_shares {
-    capacity_gb = 1024
-    name        = "slurm-share"
+    capacity_gb = 2560
+    name        = "slurm_share"
   }
 
   networks {
-    network = "cluster_network"
+    network = "bravo-slurm-vpc"
     modes   = ["MODE_IPV4"]
   }
 }
