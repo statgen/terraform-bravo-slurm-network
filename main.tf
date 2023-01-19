@@ -10,7 +10,7 @@ resource "google_filestore_instance" "shared_home" {
   tier = "BASIC_SSD"
 
   file_shares {
-    capacity_gb = 2560
+    capacity_gb = var.shared_home_capacity
     name        = "slurm_home"
   }
 
@@ -26,7 +26,7 @@ resource "google_filestore_instance" "shared_app" {
   tier = "BASIC_SSD"
 
   file_shares {
-    capacity_gb = 2560
+    capacity_gb = var.shared_app_capacity
     name        = "slurm_app"
   }
 

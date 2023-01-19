@@ -9,3 +9,15 @@ variable "use_iap" {
   type        = bool
   default     = false
 }
+
+variable "shared_app_capacity" {
+  description = "Capacity in gb of slurm shared apps fileshare."
+  type        = number
+  default     = 2560
+}
+
+variable "shared_home_capacity" {
+  description = "Capacity in gb of slurm home (data) fileshare."
+  type        = number
+  default     = 5120
+}
