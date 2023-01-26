@@ -18,10 +18,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  region = join("-", slice(split("-", var.zone), 0, 2))
-}
-
 resource "google_compute_network" "cluster_network" {
   name                    = "bravo-slurm-vpc"
   auto_create_subnetworks = false
