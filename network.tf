@@ -19,7 +19,7 @@
 # limitations under the License.
 
 locals {
-
+  region = join("-", slice(split("-", var.zone), 0, 2))
 }
 
 resource "google_compute_network" "cluster_network" {
@@ -30,7 +30,7 @@ resource "google_compute_network" "cluster_network" {
 resource "google_compute_subnetwork" "cluster_subnet" {
   name                     = "bravo-slurm-subnet"
   network                  = google_compute_network.cluster_network.self_link
-  region                   = "us-central1"
+  region                   = local.region
   ip_cidr_range            = "10.1.0.0/16"
   private_ip_google_access = true
 }

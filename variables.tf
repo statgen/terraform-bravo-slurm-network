@@ -4,6 +4,12 @@ variable "GOOGLE_CREDENTIALS" {
   default     = ""
 }
 
+variable "zone" {
+  description = "Single GCP zone to allocate resources"
+  type        = string
+  default     = "us-central1-c"
+}
+
 variable "use_iap" {
   description = "Use google's IAP to access hosts instead of traditional ssh."
   type        = bool

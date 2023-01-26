@@ -1,12 +1,16 @@
 provider "google" {
   project = "genome-variant-server"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  region  = local.region
+  zone    = var.zone
 }
+
+locals {
+  region = join("-", slice(split("-", var.zone), 0, 2))
+} 
 
 resource "google_filestore_instance" "shared_home" {
   name = "slurm-shared-home"
-  zone = "us-central1-c"
+  zone = var.zone
   tier = "BASIC_SSD"
 
   file_shares {
@@ -22,7 +26,7 @@ resource "google_filestore_instance" "shared_home" {
 
 resource "google_filestore_instance" "shared_app" {
   name = "slurm-shared-app"
-  zone = "us-central1-c"
+  zone = var.zone
   tier = "BASIC_SSD"
 
   file_shares {
